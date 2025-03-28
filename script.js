@@ -54,3 +54,41 @@ contactForm.addEventListener('submit', async (e) => {
     // Clear form
     contactForm.reset();
 });
+
+// Hamburger menu functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+    });
+
+    // Intersection Observer for scroll animations
+    const fadeElements = document.querySelectorAll('.fade-in-scroll');
+    
+    const appearOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('visible');
+            appearOnScroll.unobserve(entry.target);
+        });
+    }, appearOptions);
+    
+    fadeElements.forEach(element => {
+        appearOnScroll.observe(element);
+    });
+});
+
+// Contact form functionality
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Form submission logic here
+    alert('Thank you for your message! We will get back to you soon.');
+    this.reset();
+});
