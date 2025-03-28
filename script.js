@@ -15,7 +15,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Smooth scroll for navigation links
+// Smooth scroll for navigation links that start with #
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -35,28 +35,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Contact Form Handling
 const contactForm = document.getElementById('contact-form');
 
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    const formData = {
-        name: contactForm.querySelector('input[type="text"]').value,
-        email: contactForm.querySelector('input[type="email"]').value,
-        message: contactForm.querySelector('textarea').value
-    };
+        const formData = {
+            name: contactForm.querySelector('input[type="text"]').value,
+            email: contactForm.querySelector('input[type="email"]').value,
+            message: contactForm.querySelector('textarea').value
+        };
 
-    // Here you would typically send the form data to your backend
-    // For now, we'll just log it and show a success message
-    console.log('Form submitted:', formData);
+        // Here you would typically send the form data to your backend
+        // For now, we'll just log it and show a success message
+        console.log('Form submitted:', formData);
 
-    // Show success message
-    alert('Thank you for your message! We will get back to you soon.');
-    
-    // Clear form
-    contactForm.reset();
-});
+        // Show success message
+        alert('Thank you for your message! We will get back to you soon.');
+        
+        // Clear form
+        contactForm.reset();
+    });
+}
 
-// Hamburger menu functionality
+// Intersection Observer for scroll animations
 document.addEventListener('DOMContentLoaded', function() {
+    // Hamburger menu functionality
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
@@ -83,12 +86,15 @@ document.addEventListener('DOMContentLoaded', function() {
     fadeElements.forEach(element => {
         appearOnScroll.observe(element);
     });
-});
-
-// Contact form functionality
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Form submission logic here
-    alert('Thank you for your message! We will get back to you soon.');
-    this.reset();
+    
+    // Make service cards clickable
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const link = this.querySelector('a');
+            if (link) {
+                window.location.href = link.getAttribute('href');
+            }
+        });
+    });
 });
