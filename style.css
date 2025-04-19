@@ -18,6 +18,7 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: var(--dark);
+    background-color: #f8f8f8;
 }
 
 .container {
@@ -145,10 +146,12 @@ body {
     background: var(--light-gray);
 }
 
-.services h2 {
+.services h2, .services-deals-combined h2 {
     text-align: center;
     margin-bottom: 3rem;
     color: var(--primary-blue);
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .service-grid {
@@ -166,6 +169,11 @@ body {
     transition: transform 0.3s ease;
     position: relative;
     cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .service-card:hover {
@@ -173,14 +181,20 @@ body {
 }
 
 .service-card i {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--primary-red);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .service-card h3 {
     margin-bottom: 1rem;
     color: var(--primary-blue);
+    font-size: 1.4rem;
+}
+
+.service-card p {
+    color: var(--gray);
+    line-height: 1.5;
 }
 
 .service-card a {
@@ -341,6 +355,7 @@ body {
 .social-links a:hover .fa-instagram {
     background: -webkit-linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -431,6 +446,27 @@ footer {
     padding: 120px 0 60px;
 }
 
+.service-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-title i {
+    font-size: 3rem;
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+}
+
+.service-title h2 {
+    color: var(--primary-blue);
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
 .services-intro {
     text-align: center;
     max-width: 800px;
@@ -510,38 +546,6 @@ footer {
     height: auto;
 }
 
-/* Deals and Promotions Section */
-.deals {
-    padding: 80px 0;
-    background: linear-gradient(135deg, rgba(0,51,160,0.05), rgba(238,28,37,0.05));
-}
-
-.deals h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--primary-blue);
-}
-
-.deals-content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 2rem;
-    background: var(--white);
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.promotion-badge {
-    display: inline-block;
-    background: var(--primary-red);
-    color: var(--white);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-}
-
 /* Combined Services & Deals Section */
 .services-deals-combined {
     padding: 80px 0;
@@ -554,22 +558,219 @@ footer {
     gap: 60px;
 }
 
-.services-container h2,
-.deals-container h2 {
+/* Deals and Promotions Section */
+.deals {
+    padding: 40px 0;
+}
+
+.deals h2 {
     text-align: center;
     margin-bottom: 3rem;
     color: var(--primary-blue);
 }
 
-.services-container {
-    width: 100%;
+.deals-content {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-.deals-container {
-    width: 100%;
+.personal-guarantee {
+    font-weight: bold;
+    color: var(--primary-blue);
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    padding: 10px 0;
 }
 
-/* Responsive Design */
+.primary-promotion {
+    background-color: var(--primary-red);
+    color: var(--white);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.fine-print {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-top: 1rem;
+    padding: 0 20px;
+}
+
+/* Service Description */
+.service-description {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.service-description p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* Instrument Categories */
+.instrument-categories {
+    margin-top: 2rem;
+}
+
+.category-accordion {
+    margin-bottom: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.category-header {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.category-header h3 {
+    margin: 0;
+    color: var(--white);
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease;
+}
+
+.category-accordion.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.category-content {
+    display: none;
+    padding: 1rem;
+}
+
+.category-accordion.active .category-content {
+    display: block;
+}
+
+.category-content ul {
+    list-style: none;
+}
+
+.category-content li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.category-content li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.instrument-image-placeholder {
+    width: 100px;
+    height: 60px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+/* Amp Gallery */
+.amp-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.amp-image-placeholder {
+    height: 150px;
+    background-color: #eee;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.amp-caption {
+    background-color: rgba(0,51,160,0.8);
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Electronics Gallery */
+.electronics-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.electronics-image-placeholder {
+    height: 150px;
+    background-color: #eee;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.electronics-caption {
+    background-color: rgba(0,51,160,0.8);
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Maintenance Services */
+.maintenance-services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.maintenance-item {
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.maintenance-item:hover {
+    transform: translateY(-5px);
+}
+
+.maintenance-item i {
+    font-size: 2.5rem;
+    color: var(--primary-red);
+    margin-bottom: 1rem;
+}
+
+.maintenance-item h3 {
+    color: var(--primary-blue);
+}
+
+/* Media Queries for mobile responsiveness */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -628,5 +829,27 @@ footer {
     
     .services-deals-combined .container {
         gap: 40px;
+    }
+
+    .category-content li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .instrument-image-placeholder {
+        margin-top: 0.5rem;
+        width: 100%;
+        height: 100px;
+    }
+    
+    .amp-gallery,
+    .electronics-gallery,
+    .maintenance-services {
+        grid-template-columns: 1fr;
+    }
+    
+    .primary-promotion {
+        font-size: 1.4rem;
+        padding: 1rem;
     }
 }

@@ -97,4 +97,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Instrument Categories Accordion
+    const accordionHeaders = document.querySelectorAll('.category-header');
+    
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+            const accordion = this.parentElement;
+            accordion.classList.toggle('active');
+        });
+    });
+    
+    const firstAccordion = document.querySelector('.category-accordion');
+    if (firstAccordion) {
+        firstAccordion.classList.add('active');
+    }
 });
